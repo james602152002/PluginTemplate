@@ -5,7 +5,7 @@ import com.github.james602152002.plugintemplate.manager.PackageManager
 import com.intellij.psi.PsiDirectory
 import save
 
-fun createBean(
+fun createListBean(
     packageName: String = PackageManager.packageName,
     className: String,
     path: String,

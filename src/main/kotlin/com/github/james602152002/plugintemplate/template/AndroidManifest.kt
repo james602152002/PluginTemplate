@@ -8,7 +8,9 @@ xmlns:tools="http://schemas.android.com/tools">
            <activity
             android:name=".${dir}.${path}.${activityClassName}"
             android:launchMode="singleTask"
-            android:theme="@style/CommonTheme" />
+            android:theme="@style/${
+    if (activityClassName.lowercase().contains("search")) "SearchTheme" else "CommonTheme"
+}" />
     </application>
 </manifest>
 """

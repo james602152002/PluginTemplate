@@ -30,6 +30,7 @@ fun RecipeExecutor.mvvmRecipe(
     keyStatusList: String,
     keyAdvanceSearch: String,
     keyKeywords: String,
+    keyDetail: String,
 ) {
     val (projectData, _, _, manifestOut) = moduleData
     val project = projectInstance ?: return
@@ -92,7 +93,7 @@ fun RecipeExecutor.mvvmRecipe(
             processType = Type.MANAGE,
             keyTitle = keyManage,
             hasCreation = hasManageCreation,
-            keyCreation = keyManage,
+            keyCreation = keyCreation,
             keyStatusList = keyStatusList,
             keyAdvanceSearch = keyAdvanceSearch
         )
@@ -100,7 +101,7 @@ fun RecipeExecutor.mvvmRecipe(
 
 
     /**
-     * -----------------列表fragment-----------------
+     * -----------------列表fragment、高級搜索-----------------
      * */
 
     if (needUserAct || needAuditAct || needManageAct) {
@@ -142,7 +143,7 @@ fun RecipeExecutor.mvvmRecipe(
             directorySrc = directorySrc,
         )
         //列表javabean
-        createBean(
+        createListBean(
             packageName = packageRealName,
             className = pageName,
             path = path,
@@ -159,7 +160,33 @@ fun RecipeExecutor.mvvmRecipe(
             keyKeywords = keyKeywords,
         )
     }
+    /**
+     * -----------------詳情-----------------
+     * */
+    createDetailActivity(
+        packageName = packageRealName,
+        className = pageName,
+        manifestOut = manifestOut,
+        path = path,
+        directorySrc = directorySrc,
+        directoryRes = directoryRes,
+        keyTitle = keyDetail,
+        keyCreation = keyCreation,
+    )
 
+    createDetailBean(
+        packageName = packageRealName,
+        className = pageName,
+        path = path,
+        directorySrc = directorySrc,
+    )
+
+    createRepoDetail(
+        packageName = packageRealName,
+        className = pageName,
+        path = path,
+        directorySrc = directorySrc,
+    )
 //    if (needActivity) {
 //        mergeXml(
 //            manifestTemplateXml(packageRealName, activityPackageName, "${pageName}Activity"),

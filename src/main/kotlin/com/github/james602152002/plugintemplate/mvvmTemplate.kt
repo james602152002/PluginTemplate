@@ -156,6 +156,17 @@ val MVVMTemplate
             help = "搜索关键词"
         }
 
+        /**
+         * ----------------------詳情頁----------------------
+         * */
+        //詳情頁的key
+        val keyDetail = stringParameter {
+            name = "Key Of Detail"
+            default = "Pages.Financial.ChargesSZ.Detail"
+            help = "詳情頁的key"
+        }
+
+
 //        //布局名
 //        val activityLayoutName = stringParameter {
 //            name = "Activity Layout Name"
@@ -265,6 +276,7 @@ val MVVMTemplate
             TextFieldWidget(keyStatusList),
             TextFieldWidget(keyAdvanceSearch),
             TextFieldWidget(keyKeywords),
+            TextFieldWidget(keyDetail),
 //            LanguageWidget()
         )
 
@@ -288,7 +300,8 @@ val MVVMTemplate
                 keyCreation = keyCreation.value,
                 keyStatusList = keyStatusList.value,
                 keyAdvanceSearch = keyAdvanceSearch.value,
-                keyKeywords = keyKeywords.value
+                keyKeywords = keyKeywords.value,
+                keyDetail = keyDetail.value,
             )
         }
     }
