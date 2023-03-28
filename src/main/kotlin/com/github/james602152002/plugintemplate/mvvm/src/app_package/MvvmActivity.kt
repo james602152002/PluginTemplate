@@ -23,7 +23,7 @@ fun RecipeExecutor.createListActivity(
     keyCreation: String,
     keyStatusList: String,
     keyAdvanceSearch: String,
-) {
+): String {
     val activityClassName = "Activity${processType.key}${className}s"
 //    val layoutFileName = "Activity${className}"
     mergeXml(
@@ -50,6 +50,7 @@ fun RecipeExecutor.createListActivity(
         "view.ui.${path}",
         activityClassName.asKt()
     )
+    return activityClassName
 }
 
 private fun createListActivity(
@@ -70,7 +71,7 @@ private fun createListActivity(
   import $applicationPackageName.remote.${path}.Repo${className}
   import $applicationPackageName.template.initRepoModel
   import $applicationPackageName.template.view.getPopupWindow
-  import $applicationPackageName.view.fragment.${path}.Fragment${className}
+  import $applicationPackageName.view.fragment.${path}.Fragment${className}s
   import $applicationPackageName.view.ui.base.BaseArchPageTSCActivity
   import $applicationPackageName.view.ui.search.${path}.ActivitySearch${className}
   import com.bitzsoft.base.util.Constants
@@ -78,7 +79,7 @@ private fun createListActivity(
   import com.bitzsoft.repo.delegate.RepoViewImplModel
   import org.koin.androidx.viewmodel.ext.android.viewModel
   
-  class $activityClassName : BaseArchPageTSCActivity<Request${className}>(),
+  class $activityClassName : BaseArchPageTSCActivity<Request${className}s>(),
     View.OnClickListener {
 
     override var titleKey: String? = "$keyTitle"
@@ -97,7 +98,7 @@ private fun createListActivity(
     private val repo: RepoViewImplModel by viewModel()
     private val repoModel: Repo${className} by initRepoModel { arrayOf(viewModel, repo) }
 
-    override fun frag(pos: Int) = Fragment${className}()
+    override fun frag(pos: Int) = Fragment${className}s()
 
     override fun fetchTab() {
         repoModel.subscribe${processType.key}Tab(tabModel, adapter, statusListKey, intent)

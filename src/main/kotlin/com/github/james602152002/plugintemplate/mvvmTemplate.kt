@@ -1,8 +1,6 @@
 package com.github.james602152002.plugintemplate
 
 import com.android.tools.idea.wizard.template.*
-import com.intellij.openapi.ui.Divider
-import com.intellij.openapi.wm.StatusBarWidget.WidgetBorder
 
 val MVVMTemplate
     get() = template {
@@ -99,8 +97,8 @@ val MVVMTemplate
         }
 
         /**
-        * ----------------------管理列表----------------------
-        * */
+         * ----------------------管理列表----------------------
+         * */
         //是否创建管理列表页面
         val needManageAct = booleanParameter {
             name = "Generate Manage Activity"
@@ -283,19 +281,19 @@ val MVVMTemplate
                 data as ModuleTemplateData,
                 pageName.value,
                 packageName.value,
-                path= path.value,
-                needUserAct= needUserAct.value,
-                keyUser= keyUser.value,
-                hasUserCreation= hasUserCreation.value,
-                needAuditAct= needAuditAct.value,
-                keyAudit= keyAudit.value,
-                hasAuditCreation= hasAuditCreation.value,
-                needManageAct=needManageAct.value,
-                keyManage=keyManage.value,
-                hasManageCreation=hasManageCreation.value,
-                keyCreation=keyCreation.value,
-                keyStatusList=keyStatusList.value,
-                keyAdvanceSearch=keyAdvanceSearch.value,
+                path = path.value,
+                needUserAct = needUserAct.value,
+                keyUser = keyUser.value,
+                hasUserCreation = hasUserCreation.value,
+                needAuditAct = needAuditAct.value,
+                keyAudit = keyAudit.value,
+                hasAuditCreation = hasAuditCreation.value,
+                needManageAct = needManageAct.value,
+                keyManage = keyManage.value,
+                hasManageCreation = hasManageCreation.value,
+                keyCreation = keyCreation.value,
+                keyStatusList = keyStatusList.value,
+                keyAdvanceSearch = keyAdvanceSearch.value,
 //                needActivity.value,
 //                activityLayoutName.value,
 //                generateActivityLayout.value,

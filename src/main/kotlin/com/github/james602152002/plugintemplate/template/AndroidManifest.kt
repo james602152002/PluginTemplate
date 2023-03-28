@@ -7,6 +7,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <application>
            <activity
             android:name=".view.ui.${path}.${activityClassName}"
+            android:launchMode="singleTask"
             android:theme="@style/CommonTheme" />
     </application>
 </manifest>

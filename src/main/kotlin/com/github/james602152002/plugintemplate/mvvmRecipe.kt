@@ -7,6 +7,10 @@ import com.android.tools.idea.wizard.template.impl.activities.common.addAllKotli
 import com.github.james602152002.plugintemplate.listeners.MyProjectManagerListener.Companion.projectInstance
 import com.github.james602152002.plugintemplate.manager.ProjectFileManager
 import com.github.james602152002.plugintemplate.manager.addPackageName
+import com.github.james602152002.plugintemplate.mvvm.src.app_package.createAdapter
+import com.github.james602152002.plugintemplate.mvvm.src.app_package.createDiffUtil
+import com.github.james602152002.plugintemplate.mvvm.src.app_package.createListFragment
+import com.github.james602152002.plugintemplate.mvvm.src.app_package.createRepo
 import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.psi.PsiManager
 import createListActivity
@@ -113,8 +117,37 @@ fun RecipeExecutor.mvvmRecipe(
      * -----------------列表fragment-----------------
      * */
 
-    if(needUserAct || needAuditAct || needManageAct){
-
+    if (needUserAct || needAuditAct || needManageAct) {
+        //fragment
+        createListFragment(
+            packageName = packageRealName,
+            className = pageName,
+            path = path,
+            directorySrc = directorySrc,
+            keyStatusList = keyStatusList,
+        )
+        //請求
+        createRepo(
+            packageName = packageRealName,
+            className = pageName,
+            path = path,
+            directorySrc = directorySrc,
+        )
+        //diffUtil
+        createDiffUtil(
+            packageName = packageRealName,
+            className = pageName,
+            path = path,
+            directorySrc = directorySrc,
+        )
+        //适配器
+        createAdapter(
+            packageName = packageRealName,
+            className = pageName,
+            path = path,
+            directorySrc = directorySrc,
+            directoryRes = directoryRes
+        )
     }
 
 //    if (needActivity) {
