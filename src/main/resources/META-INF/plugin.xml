@@ -1,18 +1,28 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.james602152002.plugintemplate</id>
-    <name>IntelliJ Platform Plugin PluginTemplate</name>
+    <name>ShikiTemplate</name>
     <vendor>james602152002</vendor>
 
+    <depends>org.jetbrains.android</depends>
+    <depends>org.jetbrains.kotlin</depends>
+    <depends>com.intellij.modules.java</depends>
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.james602152002.plugintemplate.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.james602152002.plugintemplate.services.MyProjectService"/>
+        <applicationService
+            serviceImplementation="com.github.james602152002.plugintemplate.services.MyApplicationService" />
+        <projectService
+            serviceImplementation="com.github.james602152002.plugintemplate.services.MyProjectService" />
+    </extensions>
+
+    <extensions defaultExtensionNs="com.android.tools.idea.wizard.template">
+        <wizardTemplateProvider implementation="com.github.james602152002.plugintemplate.SamplePluginTemplateProviderImpl" />
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.james602152002.plugintemplate.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
+        <listener
+            class="com.github.james602152002.plugintemplate.listeners.MyProjectManagerListener"
+            topic="com.intellij.openapi.project.ProjectManagerListener" />
     </applicationListeners>
 </idea-plugin>

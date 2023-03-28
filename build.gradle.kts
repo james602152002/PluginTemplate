@@ -55,6 +55,11 @@ qodana {
     showReport.set(System.getenv("QODANA_SHOW_REPORT")?.toBoolean() ?: false)
 }
 
+
+dependencies {
+    compileOnly(files("lib/wizard-template.jar"))
+}
+
 // Configure Gradle Kover Plugin - read more: https://github.com/Kotlin/kotlinx-kover#configuration
 kover.xmlReport {
     onCheck.set(true)
@@ -119,3 +124,4 @@ tasks {
         channels.set(listOf(properties("pluginVersion").split('-').getOrElse(1) { "default" }.split('.').first()))
     }
 }
+
