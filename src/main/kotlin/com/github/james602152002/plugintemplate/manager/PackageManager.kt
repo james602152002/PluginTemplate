@@ -23,7 +23,7 @@ object PackageManager {
 
     private fun toModulePackageName(moduleName: String): String {
         return _packageName
-            .replace("ui", "")
+//            .replace("ui", "")
             .split(".").let {
                 val pre = it.subList(0, it.lastIndex - 1)
                 val mid = listOf(moduleName.toLowerCase())
