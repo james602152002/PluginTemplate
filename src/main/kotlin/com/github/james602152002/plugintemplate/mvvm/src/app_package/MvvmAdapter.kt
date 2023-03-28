@@ -62,20 +62,8 @@ private fun createXMLStr(
                     android:maxLines="1"
                     app:layout_constraintBottom_toTopOf="@+id/currency"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toLeftOf="@+id/more"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.bitzsoft.ailinkedlaw.widget.imageview.OperationImageView
-                    android:id="@+id/more"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@{adjModel.commonHMargin}"
-                    android:background="@drawable/ripple_primary_oval"
-                    android:onClick="@{()->model.showRecords()}"
-                    app:layout_constraintLeft_toRightOf="@id/total_charge_amount"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/total_charge_amount"
-                    app:srcCompat="@drawable/ic_more" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.bitzsoft.ailinkedlaw.widget.textview.ContentTextView
                     android:id="@+id/currency"

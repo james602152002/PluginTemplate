@@ -7,10 +7,7 @@ import com.android.tools.idea.wizard.template.impl.activities.common.addAllKotli
 import com.github.james602152002.plugintemplate.listeners.MyProjectManagerListener.Companion.projectInstance
 import com.github.james602152002.plugintemplate.manager.ProjectFileManager
 import com.github.james602152002.plugintemplate.manager.addPackageName
-import com.github.james602152002.plugintemplate.mvvm.src.app_package.createAdapter
-import com.github.james602152002.plugintemplate.mvvm.src.app_package.createDiffUtil
-import com.github.james602152002.plugintemplate.mvvm.src.app_package.createListFragment
-import com.github.james602152002.plugintemplate.mvvm.src.app_package.createRepo
+import com.github.james602152002.plugintemplate.mvvm.src.app_package.*
 import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.psi.PsiManager
 import createListActivity
@@ -32,18 +29,6 @@ fun RecipeExecutor.mvvmRecipe(
     keyCreation: String,
     keyStatusList: String,
     keyAdvanceSearch: String,
-//    needActivity: Boolean,
-//    activityLayoutName: String,
-//    generateActivityLayout: Boolean,
-//    activityPackageName: String,
-//    needFragment: Boolean,
-//    fragmentLayoutName: String,
-//    generateFragmentLayout: Boolean,
-//    fragmentPackageName: String,
-//    needRepository: Boolean,
-//    needViewModel: Boolean,
-//    repositoryPackageName: String,
-//    viewModelPackageName: String
 ) {
     val (projectData, _, _, manifestOut) = moduleData
     val project = projectInstance ?: return
@@ -147,6 +132,20 @@ fun RecipeExecutor.mvvmRecipe(
             path = path,
             directorySrc = directorySrc,
             directoryRes = directoryRes
+        )
+        //适配器viewModel
+        createViewModel(
+            packageName = packageRealName,
+            className = pageName,
+            path = path,
+            directorySrc = directorySrc,
+        )
+        //列表javabean
+        createBean(
+            packageName = packageRealName,
+            className = pageName,
+            path = path,
+            directorySrc = directorySrc,
         )
     }
 

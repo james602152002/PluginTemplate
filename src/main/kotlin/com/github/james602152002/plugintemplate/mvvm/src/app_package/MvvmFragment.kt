@@ -40,11 +40,12 @@ private fun createListFragmentStr(
     import $applicationPackageName.view.ui.${path}.Activity${Type.MANAGE.key}${className}s
     import $applicationPackageName.view.ui.${path}.Activity${Type.USER.key}${className}s
     import com.bitzsoft.model.request.${path}.Request${className}s
+    import com.bitzsoft.model.response.${path}.Response${className}s
     import org.koin.androidx.viewmodel.ext.android.sharedViewModel
     import org.koin.core.parameter.parametersOf
 
     class $fragmentClassName :
-        BaseArchListFragment<Request${className}s, Any>() {
+        BaseArchListFragment<Request${className}s, Response${className}s>() {
 
         override val request = Request${className}s(sorting = "creationTime desc")
 
