@@ -24,10 +24,12 @@ fun RecipeExecutor.createListActivity(
     keyStatusList: String,
     keyAdvanceSearch: String,
 ): String {
+    val dir = "view.ui"
     val activityClassName = "Activity${processType.key}${className}s"
 //    val layoutFileName = "Activity${className}"
     mergeXml(
         manifestTemplateXml(
+            dir = dir,
             path = path,
             activityClassName = activityClassName
         ),
@@ -47,7 +49,7 @@ fun RecipeExecutor.createListActivity(
         keyAdvanceSearch,
     ).save(
         directorySrc,
-        "view.ui.${path}",
+        "${dir}.${path}",
         activityClassName.asKt()
     )
     return activityClassName

@@ -150,6 +150,11 @@ val MVVMTemplate
          * ----------------------列表Fragment----------------------
          * */
 
+        val keyKeywords = stringParameter {
+            name = "Search Key Of Keywords"
+            default = "KeyWord"
+            help = "搜索关键词"
+        }
 
 //        //布局名
 //        val activityLayoutName = stringParameter {
@@ -259,19 +264,8 @@ val MVVMTemplate
             TextFieldWidget(keyCreation),
             TextFieldWidget(keyStatusList),
             TextFieldWidget(keyAdvanceSearch),
-//            CheckBoxWidget(needActivity),
-//            TextFieldWidget(activityLayoutName),
-//            CheckBoxWidget(generateActivityLayout),
-//            TextFieldWidget(activityPackageName),
-//            CheckBoxWidget(needFragment),
-//            TextFieldWidget(fragmentLayoutName),
-//            CheckBoxWidget(generateFragmentLayout),
-//            TextFieldWidget(fragmentPackageName),
-//            CheckBoxWidget(needRepository),
-//            TextFieldWidget(repositoryPackageName),
-//            CheckBoxWidget(needViewModel),
-//            TextFieldWidget(viewModelPackageName),
-            LanguageWidget()
+            TextFieldWidget(keyKeywords),
+//            LanguageWidget()
         )
 
 //        thumb { File("template_blank_activity.png") }
@@ -294,18 +288,7 @@ val MVVMTemplate
                 keyCreation = keyCreation.value,
                 keyStatusList = keyStatusList.value,
                 keyAdvanceSearch = keyAdvanceSearch.value,
-//                needActivity.value,
-//                activityLayoutName.value,
-//                generateActivityLayout.value,
-//                activityPackageName.value,
-//                needFragment.value,
-//                fragmentLayoutName.value,
-//                generateFragmentLayout.value,
-//                fragmentPackageName.value,
-//                needRepository.value,
-//                needViewModel.value,
-//                repositoryPackageName.value,
-//                viewModelPackageName.value
+                keyKeywords = keyKeywords.value
             )
         }
     }

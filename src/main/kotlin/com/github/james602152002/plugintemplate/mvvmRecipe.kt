@@ -29,6 +29,7 @@ fun RecipeExecutor.mvvmRecipe(
     keyCreation: String,
     keyStatusList: String,
     keyAdvanceSearch: String,
+    keyKeywords: String,
 ) {
     val (projectData, _, _, manifestOut) = moduleData
     val project = projectInstance ?: return
@@ -146,6 +147,16 @@ fun RecipeExecutor.mvvmRecipe(
             className = pageName,
             path = path,
             directorySrc = directorySrc,
+        )
+        //高级搜索
+        createSearch(
+            packageName = packageRealName,
+            className = pageName,
+            manifestOut = manifestOut,
+            path = path,
+            directorySrc = directorySrc,
+            directoryRes = directoryRes,
+            keyKeywords = keyKeywords,
         )
     }
 
