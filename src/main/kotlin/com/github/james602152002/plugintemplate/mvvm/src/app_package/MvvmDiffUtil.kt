@@ -28,9 +28,9 @@ private fun createDiffUtilStr(
     import com.bitzsoft.model.response.${path}.Response${className}s
 
     class $repoClassName(
-        oldData: MutableList<out Response${className}s>,
-        newData: MutableList<out Response${className}s>
-    ) : BaseDiffUtil<Any>(oldData, newData) {
+        oldData: MutableList<Response${className}s>,
+        newData: MutableList<Response${className}s>
+    ) : BaseDiffUtil<Response${className}s>(oldData, newData) {
 
     override var implItemSame: (Response${className}s.(newItem: Response${className}s) -> Boolean)? =
         { newItem ->

@@ -86,7 +86,7 @@ import $applicationPackageName.remote.${path}.Repo${className}
 import $applicationPackageName.template.initAuditType
 import $applicationPackageName.template.initRepoModel
 import $applicationPackageName.view.fragment.search.BaseArchSearchFragment
-import $applicationPackageName.view.fragment.search.${searchPath}.FragmentSearchChargeSZ
+import $applicationPackageName.view.fragment.search.${searchPath}.FragmentSearch${className}
 import $applicationPackageName.view.ui.search.base.BaseArchSearchActivity
 import $applicationPackageName.view_model.common.list.CommonListViewModel
 import com.bitzsoft.base.helper.RefreshState
@@ -127,10 +127,6 @@ class $activityClassName :
 
     override fun startBinding(binding: ActivityCommonSearchBinding) {
         val adapter = viewModel.adapter.get()
-        if (adapter is ChargeSZsAdapter) {
-            adapter.repo = repo
-            adapter.attachModel = attachModel
-        }
         binding.model = viewModel
     }
 
@@ -176,7 +172,7 @@ private fun createXMLStr(
     className: String,
     searchPath: String,
 ) = """
-    <?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <layout>
 
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -362,7 +358,7 @@ private fun createSearchFrag(
 package $applicationPackageName.view.fragment.search.${searchPath}
 
 import $applicationPackageName.R
-import $applicationPackageName.databinding.SearchChargeSzBinding
+import $applicationPackageName.databinding.FragmentSearch${className}Binding
 import $applicationPackageName.remote.common.RepoFLSOrganizationViewModel
 import $applicationPackageName.template.initRepoModel
 import $applicationPackageName.view.fragment.search.BaseArchSearchFragment
@@ -372,7 +368,7 @@ import com.bitzsoft.model.request.common.RequestCommonBooleanID
 import com.bitzsoft.model.request.${path}.Request${className}s
 
 class $searchClassName :
-    BaseArchSearchFragment<Request${className}s, Search${className}Binding>() {
+    BaseArchSearchFragment<Request${className}s, FragmentSearch${className}Binding>() {
 
     private val organizationModel: RepoFLSOrganizationViewModel by initRepoModel {
         arrayOf(

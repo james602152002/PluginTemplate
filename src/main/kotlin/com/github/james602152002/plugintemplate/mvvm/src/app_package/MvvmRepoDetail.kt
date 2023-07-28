@@ -52,7 +52,7 @@ class $repoClassName(
         jobInfo(
             model, api, request,
             implInfo = {
-                model.subscribeOnUI(api.fetch${className}Info(request)) { response ->
+                model.subscribeOnUI(this, api.fetch${className}Info(request)) { response ->
                     response.result?.let { result ->
                         model.updateViewModel(result)
                     }

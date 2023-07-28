@@ -32,7 +32,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModel
 import $applicationPackageName.remote.attachment.RepoAttachmentViewModel
-import $applicationPackageName.remote.$path.RepoChargeSZ
+import $applicationPackageName.remote.$path.Repo${className}
 import $applicationPackageName.template.initAuditType
 import $applicationPackageName.template.jumpToDetailPage
 import $applicationPackageName.template.setAuditType

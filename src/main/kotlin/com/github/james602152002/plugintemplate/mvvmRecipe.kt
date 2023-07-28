@@ -135,13 +135,13 @@ fun RecipeExecutor.mvvmRecipe(
             directorySrc = directorySrc,
             directoryRes = directoryRes
         )
-        //适配器viewModel
-        createViewModel(
-            packageName = packageRealName,
-            className = pageName,
-            path = path,
-            directorySrc = directorySrc,
-        )
+//        //适配器viewModel
+//        createViewModel(
+//            packageName = packageRealName,
+//            className = pageName,
+//            path = path,
+//            directorySrc = directorySrc,
+//        )
         //列表javabean
         createListBean(
             packageName = packageRealName,

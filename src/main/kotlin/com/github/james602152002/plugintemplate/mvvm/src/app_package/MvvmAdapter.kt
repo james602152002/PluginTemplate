@@ -15,15 +15,20 @@ fun createAdapter(
 ) {
     //layout
     val layoutFileName = "Card${className}".toSnakeCase()
-    createXMLStr(packageName, className, path).save(
-        directoryRes,
-        "layout",
-        "${layoutFileName}.xml"
-    )
+//    createXMLStr(packageName, className, path).save(
+//        directoryRes,
+//        "layout",
+//        "${layoutFileName}.xml"
+//    )
 
     val adapterClassName = "${className}sAdapter"
 
-    createAdapterStr(
+//    createAdapterStr(
+//        packageName, adapterClassName, className, path, layoutFileName
+//    ).save(
+//        directorySrc, "adapter.${path}", adapterClassName.asKt()
+//    )
+    createFlexAdapterStr(
         packageName, adapterClassName, className, path, layoutFileName
     ).save(
         directorySrc, "adapter.${path}", adapterClassName.asKt()
@@ -208,7 +213,8 @@ private fun createXMLStr(
     </layout>
 """.trimIndent()
 
-private fun createAdapterStr(
+
+private fun createFlexAdapterStr(
     applicationPackageName: String,
     adapterClassName: String,
     className: String,
@@ -217,51 +223,156 @@ private fun createAdapterStr(
 ) = """
 package $applicationPackageName.adapter.${path}
 
-import androidx.databinding.ViewDataBinding
-import $applicationPackageName.R
-import $applicationPackageName.adapter.base.ArchRecyclerAdapter
-import $applicationPackageName.databinding.Card${className}sBinding
+import android.os.Bundle
+import $applicationPackageName.adapter.common.flex.CommonCellFlexAdapter
+import $applicationPackageName.template.initAuditType
+import $applicationPackageName.template.setAuditType
+import $applicationPackageName.util.Utils
 import $applicationPackageName.remote.attachment.RepoAttachmentViewModel
 import $applicationPackageName.view.ui.base.MainBaseActivity
+import $applicationPackageName.view.ui.business_management.cases.ActivityCaseDetail
+import $applicationPackageName.view.ui.${path}.Activity${Type.AUDIT.key}${className}s
+import $applicationPackageName.view.ui.${path}.ActivityDetail${className}
+import $applicationPackageName.view.ui.${path}.Activity${Type.MANAGE.key}${className}s
+import $applicationPackageName.view.ui.${path}.Activity${Type.USER.key}${className}s
 import $applicationPackageName.view_model.common.CommonDateTimePickerViewModel
-import $applicationPackageName.view_model.${path}.${className}sViewModel
+import $applicationPackageName.util.Constants
 import com.bitzsoft.base.adapter.ArchViewHolder
+import com.bitzsoft.model.model.widget.ModelFlex
 import com.bitzsoft.model.response.${path}.Response${className}s
-import com.bitzsoft.repo.delegate.RepoViewImplModel
 import org.koin.android.ext.android.get
 import org.koin.core.qualifier.named
 import java.text.DecimalFormat
 
 class $adapterClassName(
     private val activity: MainBaseActivity,
-    private val items: MutableList<Response${className}s>
-) : ArchRecyclerAdapter<Card${className}sBinding>(activity, items) {
+    items: MutableList<Response${className}s>
+) : CommonCellFlexAdapter<Response${className}s>(
+    activity, items, isCard = true, onClick = { mItem ->
+        val destBundle = Bundle()
+        destBundle.putString("id", mItem.id)
+        destBundle.setAuditType(
+            when (activity) {
+                is Activity${Type.USER.key}${className}s -> ${Type.USER.currentType}
+                is Activity${Type.AUDIT.key}${className}s -> ${Type.AUDIT.currentType}
+                is Activity${Type.MANAGE.key}${className}s -> ${Type.MANAGE.currentType}
+                else -> activity.intent?.initAuditType() ?: ${Type.USER.currentType}
+            }
+        )
 
-    lateinit var repo: RepoViewImplModel
-    lateinit var attachModel: RepoAttachmentViewModel
-
-    private val sauryKeyMap: HashMap<String?, String?> = activity.get(named("sauryKeyMap"))
+        Utils.startActivityByBundle(
+            activity,
+            ActivityDetail${className}::class.java,
+            destBundle
+        )
+    }
+) {
     private val pickerModel: CommonDateTimePickerViewModel = activity.get()
     private val decimalFormat: DecimalFormat = activity.get()
 
-    override fun layoutID(viewType: Int) = R.layout.$layoutFileName
-
-    override fun initView(
-        holder: ArchViewHolder<Card${className}sBinding>,
-        position: Int
-    ) {
-        holder.dataBinding { binding ->
-            binding.adjModel = adjModel
-                    binding.pickerModel = pickerModel
-                    binding.decimalFormat = decimalFormat
-                    binding.sauryKeyMap = sauryKeyMap
-                    binding.model = ${className}sViewModel(
-                        activity,
-                        items[position],
-                        repo,
-                        attachModel
-                    )
+    override fun funFlexConv(model: Response${className}s): MutableList<ModelFlex> {
+        return mutableListOf<ModelFlex>().apply {
+//            this += ModelFlex(
+//                keyTitle = "Pages.Customers.CaseConfirm",//立案客户
+//                content = model.clientName,
+//                isTitle = true,
+//                singleLine = true,
+//            )
+//            this += ModelFlex(
+//                status = model.caseSampleExecFlag,//状态
+//                statusText = model.caseSampleExecFlagText,
+//                statusType = Constants.STATUS_DEFAULT,
+//            )
+//            this += ModelFlex(
+//                keyTitle = "SourceChannel",//来源渠道
+//                content = model.pbSourceChannel?.replace("\n", ""),
+//            )
+//            this += ModelFlex(
+//                keyTitle = "ContactDate",//联系日期
+//                content = model.pbContactDate,
+//                dateFormat = pickerModel.df
+//            )
+//            this += ModelFlex(
+//                keyTitle = "ProfessionalField",//专业领域
+//                content = model.pbAreasOfExpertise?.replace("\n", ""),
+//            )
+//            this += ModelFlex(
+//                keyTitle = "DockingLawyers",//对接律师
+//                content = model.pbDockingLawyersName,
+//            )
+//            this += ModelFlex(
+//                keyTitle = "PaymentAmount",//收款金额
+//                content = model.costLimit,
+//                decimalFormat = decimalFormat
+//            )
+//            this += ModelFlex(
+//                keyTitle = "demand",//需求
+//                content = model.demandInfo,
+//            )
+//            this += ModelFlex(
+//                keyTitle = "Remark",//备注
+//                content = model.pbOther,
+//            )
         }
     }
 }
 """.trimIndent()
+
+//
+//private fun createAdapterStr(
+//    applicationPackageName: String,
+//    adapterClassName: String,
+//    className: String,
+//    path: String,
+//    layoutFileName: String,
+//) = """
+//package $applicationPackageName.adapter.${path}
+//
+//import androidx.databinding.ViewDataBinding
+//import $applicationPackageName.R
+//import $applicationPackageName.adapter.base.ArchRecyclerAdapter
+//import $applicationPackageName.databinding.Card${className}sBinding
+//import $applicationPackageName.remote.attachment.RepoAttachmentViewModel
+//import $applicationPackageName.view.ui.base.MainBaseActivity
+//import $applicationPackageName.view_model.common.CommonDateTimePickerViewModel
+//import $applicationPackageName.view_model.${path}.${className}sViewModel
+//import com.bitzsoft.base.adapter.ArchViewHolder
+//import com.bitzsoft.model.response.${path}.Response${className}s
+//import com.bitzsoft.repo.delegate.RepoViewImplModel
+//import org.koin.android.ext.android.get
+//import org.koin.core.qualifier.named
+//import java.text.DecimalFormat
+//
+//class $adapterClassName(
+//    private val activity: MainBaseActivity,
+//    private val items: MutableList<Response${className}s>
+//) : ArchRecyclerAdapter<Card${className}sBinding>(activity, items) {
+//
+//    lateinit var repo: RepoViewImplModel
+//    lateinit var attachModel: RepoAttachmentViewModel
+//
+//    private val sauryKeyMap: HashMap<String?, String?> = activity.get(named("sauryKeyMap"))
+//    private val pickerModel: CommonDateTimePickerViewModel = activity.get()
+//    private val decimalFormat: DecimalFormat = activity.get()
+//
+//    override fun layoutID(viewType: Int) = R.layout.$layoutFileName
+//
+//    override fun initView(
+//        holder: ArchViewHolder<Card${className}sBinding>,
+//        position: Int
+//    ) {
+//        holder.dataBinding { binding ->
+//            binding.adjModel = adjModel
+//                    binding.pickerModel = pickerModel
+//                    binding.decimalFormat = decimalFormat
+//                    binding.sauryKeyMap = sauryKeyMap
+//                    binding.model = ${className}sViewModel(
+//                        activity,
+//                        items[position],
+//                        repo,
+//                        attachModel
+//                    )
+//        }
+//    }
+//}
+//""".trimIndent()

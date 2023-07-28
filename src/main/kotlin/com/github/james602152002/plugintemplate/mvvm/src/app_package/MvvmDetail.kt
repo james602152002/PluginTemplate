@@ -82,7 +82,8 @@ private fun createDetailActivity(
   import $applicationPackageName.template.initAuditType
   import $applicationPackageName.template.initNotificationID
   import $applicationPackageName.template.initRepoModel
-  import $applicationPackageName.template.lowerCase
+  import $applicationPackageName.template.operator.contains
+  import $applicationPackageName.template.operator.toIgnoreCaseRegex
   import $applicationPackageName.template.model.actionBranchHashSet
   import $applicationPackageName.util.Utils
   import $applicationPackageName.view.fragment.bottom_sheet.common.BottomSheetCommonAction
@@ -90,6 +91,7 @@ private fun createDetailActivity(
   import $applicationPackageName.view.ui.common.ActivityCommonWorkFlowList
   import $applicationPackageName.view_model.common.CommonDateTimePickerViewModel
   import $applicationPackageName.view_model.common.CommonDetailProcessViewModel
+  import $applicationPackageName.view_model.common.contract.ViewModelContractProcess
   import $applicationPackageName.view_model.common.list.CommonListViewModel
   import $applicationPackageName.view_model.common.work_flow.CommonWorkFlowViewModel
   import $applicationPackageName.view_model.$path.${className}DetailViewModel
@@ -122,22 +124,17 @@ private fun createDetailActivity(
       private val pickerViewModel: CommonDateTimePickerViewModel by viewModel()
 
       private val workFlowModel by lazy {
-          CommonWorkFlowViewModel(null) {
-              val destBundle = Bundle()
-              destBundle.putString("id", request.id)
-              Utils.startActivityByBundle(this, ActivityCommonWorkFlowList::class.java, destBundle)
-          }
+          CommonWorkFlowViewModel(mAct = this, implId = { request.id })
       }
 
+      private val vmContractProcess = ViewModelContractProcess(this)
       private val processModel by lazy {
-          CommonDetailProcessViewModel(this, repo) { _, processContract ->
-              processContract.launch(
-                  Intent(
-                      this,
-                      ActivityProcess${className}::class.java
-                  ).apply {
-                      putExtra("id", request.id)
-                  })
+          CommonDetailProcessViewModel(this, repo, vmContractProcess) { _, _, processContract ->
+//              processContract.launch(Intent(
+//                  this, ActivityProcess${className}::class.java
+//              ).apply {
+//                  putExtra("id", id)
+//              })
           }
       }
 
@@ -188,19 +185,19 @@ private fun createDetailActivity(
               R.id.back -> goBack()
               R.id.edit -> {
                   BottomSheetCommonAction().show(supportFragmentManager, actions, actionMap) {
-                      when (it.name.lowerCase()) {
+                      when (it.name) {
                           //编辑
-                          "edit" -> {
+                          in "edit".toIgnoreCaseRegex() -> {
                               viewModel.startEdit()
                           }
                           //删除
-                          "delete" -> {
+                          in "delete".toIgnoreCaseRegex() -> {
                               showDialog(R.string.Delete) {
                                   repoModel.subscribeDelete(request)
                               }
                           }
                           //重新提交
-                          "redo" -> {
+                          in "redo".toIgnoreCaseRegex() -> {
                               showDialog(R.string.Redo) {
                                   repoModel.subscribeProcess(
                                       RequestCommonProcess(

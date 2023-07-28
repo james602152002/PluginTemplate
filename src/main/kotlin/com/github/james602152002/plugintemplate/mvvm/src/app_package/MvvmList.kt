@@ -75,7 +75,7 @@ private fun createListActivity(
   import $applicationPackageName.template.view.getPopupWindow
   import $applicationPackageName.view.fragment.${path}.Fragment${className}s
   import $applicationPackageName.view.ui.base.BaseArchPageTSCActivity
-  import $applicationPackageName.view.ui.search.${path}.ActivitySearch${className}
+  import $applicationPackageName.view.ui.search.${path}.ActivitySearch${className}s
   import com.bitzsoft.base.util.Constants
   import com.bitzsoft.model.request.${path}.Request${className}s
   import com.bitzsoft.repo.delegate.RepoViewImplModel
@@ -95,7 +95,7 @@ private fun createListActivity(
     override fun implCreationPage() = ${if (hasCreation) "ActivityCreate${className}::class.java" else null}
 
     override fun implSearch(): Pair<String, Class<*>> =
-        Pair(${processType.currentType}, ActivitySearch${className}::class.java)
+        Pair(${processType.currentType}, ActivitySearch${className}s::class.java)
 
     private val repo: RepoViewImplModel by viewModel()
     private val repoModel: Repo${className} by initRepoModel { arrayOf(viewModel, repo) }
