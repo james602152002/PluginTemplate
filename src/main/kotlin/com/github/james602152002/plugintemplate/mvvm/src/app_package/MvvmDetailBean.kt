@@ -11,7 +11,7 @@ fun createDetailBean(
     path: String,
     directorySrc: PsiDirectory,
 ) {
-    val responseClassName = "Response${className}Info"
+    val responseClassName = "Model${className}Info"
     createResponseStr(
         packageName, responseClassName, path
     ).save(

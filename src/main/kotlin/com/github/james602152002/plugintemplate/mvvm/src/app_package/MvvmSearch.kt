@@ -436,6 +436,7 @@ import $applicationPackageName.template.resultEmployees
 import $applicationPackageName.template.selectMultiEmployee
 import $applicationPackageName.view.fragment.base.BaseArchFragment
 import com.bitzsoft.base.util.Constants
+import com.bitzsoft.kandroid.runDelayedOnUiThread
 import com.bitzsoft.lifecycle.BaseLifeData
 import com.bitzsoft.model.request.$path.Request${className}s
 import com.bitzsoft.model.response.common.ResponseCommonComboBox
@@ -499,6 +500,9 @@ class $vmClassName(
 
     init {
         updateForm()
+        runDelayedOnUiThread(500){
+            updateForm()
+        }
     }
 
     private fun updateForm() {

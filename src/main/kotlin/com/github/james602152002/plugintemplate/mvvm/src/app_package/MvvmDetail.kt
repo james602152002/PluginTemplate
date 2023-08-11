@@ -499,7 +499,7 @@ import $applicationPackageName.view.ui.base.MainBaseActivity
 import $applicationPackageName.view.ui.$path.ActivityCreate$className
 import com.bitzsoft.base.helper.RefreshState
 import com.bitzsoft.lifecycle.BaseLifeData
-import com.bitzsoft.model.response.$path.Response${className}Info
+import com.bitzsoft.model.response.$path.Model${className}Info
 import com.bitzsoft.repo.delegate.RepoViewImplModel
 import com.bitzsoft.repo.view_model.BaseViewModel
 import java.lang.ref.WeakReference
@@ -510,7 +510,7 @@ class $vmClassName(
 ) : BaseViewModel(repo, refreshState) {
 
     private val refAct = WeakReference(mActivity)
-    val item = BaseLifeData<Response${className}Info>()
+    val item = BaseLifeData<Model${className}Info>()
 
     val snackCallBack: (Any?) -> Unit = {
         when (it) {
@@ -526,7 +526,7 @@ class $vmClassName(
 
     override fun updateViewModel(response: Any?) {
         when (response) {
-            is Response${className}Info -> {
+            is Model${className}Info -> {
                 item.set(response)
                 startConstraint()
             }
