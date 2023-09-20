@@ -60,7 +60,6 @@ class $repoClassName(
             },
             implWorkflow = { workFlowModel.updateWorkFlow(it) },
             apiActions = {
-              {
                 when (auditType) {
                     //管理
                     Constants.TYPE_MANAGEMENT -> api.fetch${className}Actions(request)
@@ -69,7 +68,6 @@ class $repoClassName(
                     //我的
                     else -> api.fetchUser${className}Actions(request)
                 }
-              }
             },
             actionImpl = actionImpl
         )

@@ -236,7 +236,7 @@ import $applicationPackageName.view.ui.${path}.ActivityDetail${className}
 import $applicationPackageName.view.ui.${path}.Activity${Type.MANAGE.key}${className}s
 import $applicationPackageName.view.ui.${path}.Activity${Type.USER.key}${className}s
 import $applicationPackageName.view_model.common.CommonDateTimePickerViewModel
-import $applicationPackageName.util.Constants
+import com.bitzsoft.base.util.Constants
 import com.bitzsoft.base.adapter.ArchViewHolder
 import com.bitzsoft.model.model.widget.ModelFlex
 import com.bitzsoft.model.response.${path}.Response${className}s

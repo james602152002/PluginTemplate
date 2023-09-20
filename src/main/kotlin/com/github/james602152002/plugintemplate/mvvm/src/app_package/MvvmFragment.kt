@@ -41,7 +41,7 @@ private fun createListFragmentStr(
     import $applicationPackageName.view.ui.${path}.Activity${Type.USER.key}${className}s
     import com.bitzsoft.model.request.${path}.Request${className}s
     import com.bitzsoft.model.response.${path}.Response${className}s
-    import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+    import org.koin.androidx.viewmodel.ext.android.activityViewModel
     import org.koin.core.parameter.parametersOf
 
     class $fragmentClassName :
@@ -50,7 +50,7 @@ private fun createListFragmentStr(
         override val request = Request${className}s(sorting = "creationTime desc")
 
         private val repoModel: Repo${className} by initRepoModel { arrayOf(viewModel, repo) }
-        private val attachModel by sharedViewModel<RepoAttachmentViewModel> {
+        private val attachModel by activityViewModel<RepoAttachmentViewModel> {
             parametersOf(
                 viewModel,
                 repo

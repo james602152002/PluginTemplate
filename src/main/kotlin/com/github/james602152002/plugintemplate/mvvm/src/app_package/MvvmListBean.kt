@@ -31,7 +31,7 @@ private fun createRequestStr(
     requestClassName: String,
     path: String,
 ) = """
-package $applicationPackageName.request.${path}
+package ${applicationPackageName.replace("ailinkedlaw", "model")}.request.${path}
 
 import android.os.Parcelable
 import com.bitzsoft.model.BuildConfig
@@ -81,7 +81,7 @@ private fun createResponseStr(
     requestClassName: String,
     path: String,
 ) = """
-package $applicationPackageName.response.${path}
+package ${applicationPackageName.replace("ailinkedlaw", "model")}}.response.${path}
 
 
 import com.bitzsoft.model.response.common.ResponseCommonList
