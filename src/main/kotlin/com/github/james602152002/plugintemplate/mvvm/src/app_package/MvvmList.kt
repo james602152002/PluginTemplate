@@ -75,7 +75,7 @@ private fun createListActivity(
   import $applicationPackageName.template.view.getPopupWindow
   import $applicationPackageName.view.fragment.${path}.Fragment${className}s
   import $applicationPackageName.view.ui.base.BaseArchPageTSCActivity
-  import $applicationPackageName.view.ui.search.${path}.ActivitySearch${className}s
+  import $applicationPackageName.view.ui.search.${path.split(".").first()}.ActivitySearch${className}s
   import com.bitzsoft.base.util.Constants
   import com.bitzsoft.model.request.${path}.Request${className}s
   import com.bitzsoft.repo.delegate.RepoViewImplModel

@@ -296,130 +296,38 @@ private fun createXMLStr(
                     android:paddingTop="@{adjModel.semiVMargin}"
                     android:paddingBottom="@{adjModel.semiVMargin}">
 
-                    <com.bitzsoft.ailinkedlaw.widget.textview.DetailPagesTitleTextView
-                        android:id="@+id/title_charge_info"
-                        cardCenterLP="@{true}"
-                        keyMap="@{model.sauryKeyMap}"
-                        textKey='@{"ExpenseInfomration"}'
-                        android:layout_width="0px"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toTopOf="@+id/card_charge_info"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/card_charge_info"
-                        style="@style/CommonCardStyle"
-                        cardCenterLP="@{true}"
-                        android:clickable="true"
-                        android:focusable="true"
-                        app:layout_constraintBottom_toTopOf="@+id/title_common_approval_records"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/title_charge_info">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/constraint_charge_info"
-                            style="@style/CommonListCardConstraintStyle"
-                            android:paddingTop="@{adjModel.semiHMargin}"
-                            android:paddingBottom="@{adjModel.semiHMargin}">
-
-                            <com.bitzsoft.ailinkedlaw.widget.textview.ContentTextView
-                                android:id="@+id/title_voucher_no"
-                                centerLP="@{true}"
-                                keyMap="@{model.sauryKeyMap}"
-                                textKey='@{"VoucherNo"}'
-                                android:layout_width="0px"
-                                android:layout_height="wrap_content"
-                                app:layout_constraintBottom_toTopOf="@+id/voucher_no"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <com.bitzsoft.ailinkedlaw.widget.textview.BodyTextView
-                                android:id="@+id/voucher_no"
-                                centerLP="@{true}"
-                                android:layout_width="0px"
-                                android:layout_height="wrap_content"
-                                android:text="@{model.item.chargeNo}"
-                                app:layout_constraintBottom_toTopOf="@+id/title_reimbursement_applicant"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/title_voucher_no" />
-
-                            <com.bitzsoft.ailinkedlaw.widget.textview.ContentTextView
-                                android:id="@+id/title_reimbursement_applicant"
-                                centerLP="@{true}"
-                                keyMap="@{model.sauryKeyMap}"
-                                textKey='@{"ReimbursementApplicant"}'
-                                android:layout_width="0px"
-                                android:layout_height="wrap_content"
-                                app:layout_constraintBottom_toTopOf="@+id/reimbursement_applicant"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/voucher_no" />
-
-                            <com.bitzsoft.ailinkedlaw.widget.textview.BodyTextView
-                                android:id="@+id/reimbursement_applicant"
-                                centerLP="@{true}"
-                                android:layout_width="0px"
-                                android:layout_height="wrap_content"
-                                android:text="@{model.item.userName}"
-                                app:layout_constraintBottom_toTopOf="@+id/title_reimburse_date"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/title_reimbursement_applicant" />
-
-                            <com.bitzsoft.ailinkedlaw.widget.textview.ContentTextView
-                                android:id="@+id/title_reimburse_date"
-                                centerLP="@{true}"
-                                keyMap="@{model.sauryKeyMap}"
-                                textKey='@{"DateOfReimbursement"}'
-                                android:layout_width="0px"
-                                android:layout_height="wrap_content"
-                                app:layout_constraintBottom_toTopOf="@+id/reimburse_date"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/reimbursement_applicant" />
-
-                            <com.bitzsoft.ailinkedlaw.widget.textview.BodyTextView
-                                android:id="@+id/reimburse_date"
-                                centerLP="@{true}"
-                                date="@{model.item.chargeDate}"
-                                format="@{picker.df}"
-                                android:layout_width="0px"
-                                android:layout_height="wrap_content"
-                                app:layout_constraintBottom_toTopOf="@+id/title_leader"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/title_reimburse_date" />
-
-                            <com.bitzsoft.ailinkedlaw.widget.textview.ContentTextView
-                                android:id="@+id/title_leader"
-                                centerLP="@{true}"
-                                keyMap="@{model.sauryKeyMap}"
-                                textKey='@{"TeamLeader"}'
-                                android:layout_width="0px"
-                                android:layout_height="wrap_content"
-                                app:layout_constraintBottom_toTopOf="@+id/leader"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/reimburse_date" />
-
-                            <com.bitzsoft.ailinkedlaw.widget.textview.BodyTextView
-                                android:id="@+id/leader"
-                                centerLP="@{true}"
-                                android:layout_width="0px"
-                                android:layout_height="wrap_content"
-                                android:text="@{model.item.leaderName}"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintRight_toRightOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/title_leader" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </androidx.cardview.widget.CardView>
+//                    <include
+//                        android:id="@+id/card_basic_info"
+//                        layout="@layout/component_title_and_flex"
+//                        android:layout_width="match_parent"
+//                        android:layout_height="wrap_content"
+//                        app:adjModel="@{adjModel}"
+//                        app:branchPermitSet="@{model.branchPermitSet}"
+//                        app:cardId="@{@id/card_basic_info}"
+//                        app:flexInfo="@{model.flexBasicInfo}"
+//                        app:keyPermission='@{model.keyPermissionBasicInfo}'
+//                        app:keyTitle='@{"BasicInformation"}'
+//                        app:model="@{model}"
+//                        app:resBT="@{@id/card_remark}"
+//                        app:titleId="@{@id/title_basic_info}" />
+//
+//                    <include
+//                        android:id="@+id/card_remark"
+//                        layout="@layout/component_common_remark"
+//                        android:layout_width="match_parent"
+//                        android:layout_height="wrap_content"
+//                        app:branchPermitSet="@{model.branchPermitSet}"
+//                        app:cardCenterLP="@{true}"
+//                        app:content="@{model.item.remark}"
+//                        app:keyPermission='@{"remark"}'
+//                        app:keyTitle='@{"Remark"}'
+//                        app:layout_constraintBottom_toTopOf="@+id/title_files"
+//                        app:layout_constraintLeft_toLeftOf="parent"
+//                        app:layout_constraintRight_toRightOf="parent"
+//                        app:layout_constraintTop_toBottomOf="@id/card_basic_info"
+//                        app:sauryKeyMap="@{model.sauryKeyMap}"
+//                        app:visible="@{model.item != null}" />
 
                     <include
                         layout="@layout/component_common_approval_records"
@@ -494,12 +402,14 @@ package $applicationPackageName.view_model.${path}
   
 import android.app.Activity
 import android.os.Bundle
+import com.bitzsoft.ailinkedlaw.delegates.human_resources.DelegateDepart
 import $applicationPackageName.util.Utils
 import $applicationPackageName.view.ui.base.MainBaseActivity
 import $applicationPackageName.view.ui.$path.ActivityCreate$className
 import com.bitzsoft.base.helper.RefreshState
 import com.bitzsoft.lifecycle.BaseLifeData
-import com.bitzsoft.model.response.$path.Model${className}Info
+import com.bitzsoft.model.model.$path.Model${className}Info
+import com.bitzsoft.model.model.widget.ModelFlex
 import com.bitzsoft.repo.delegate.RepoViewImplModel
 import com.bitzsoft.repo.view_model.BaseViewModel
 import java.lang.ref.WeakReference
@@ -510,7 +420,15 @@ class $vmClassName(
 ) : BaseViewModel(repo, refreshState) {
 
     private val refAct = WeakReference(mActivity)
-    val item = BaseLifeData<Model${className}Info>()
+    val item = BaseLifeData<Model${className}Info>().apply {
+        propertyChangedCallback(mActivity) { data ->
+            updateBasicInfo(data)
+        }
+    }
+    
+    val flexBasicInfo = BaseLifeData<MutableList<ModelFlex>>()
+    val branchPermitSet by DelegateDepart.permitOnBoarding { mActivity }
+    val keyPermissionBasicInfo = DelegateDepart.keyPermission
 
     val snackCallBack: (Any?) -> Unit = {
         when (it) {
@@ -528,16 +446,23 @@ class $vmClassName(
         when (response) {
             is Model${className}Info -> {
                 item.set(response)
-                startConstraint()
             }
         }
+    }
+    
+    private fun updateBasicInfo(response: Model${className}Info?) {
+        response ?: return
+        flexBasicInfo.set(mutableListOf<ModelFlex>().apply {
+
+        })
+        startConstraint()
     }
 
     fun startEdit() {
         refAct.get()?.apply {
             val destBundle = Bundle()
             destBundle.putString("id", item.get()?.id)
-            Utils.startActivityByBundle(this, ActivityCreate$className::class.java, destBundle)
+//            Utils.startActivityByBundle(this, ActivityCreate$className::class.java, destBundle)
         }
     }
 }
