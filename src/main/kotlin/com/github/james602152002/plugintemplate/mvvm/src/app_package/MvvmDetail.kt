@@ -165,7 +165,7 @@ private fun createDetailActivity(
           )
       }
 
-      private fun updateActions(actions: ArrayList<ResponseAction>?) {
+      private fun updateActions(actions: MutableList<ResponseAction>?) {
           this.actions.apply {
               clear()
               actions?.let { addAll(it) }
@@ -397,7 +397,7 @@ import $applicationPackageName.view.ui.$path.ActivityCreate$className
 import com.bitzsoft.base.helper.RefreshState
 import com.bitzsoft.lifecycle.BaseLifeData
 import com.bitzsoft.model.model.$path.Model${className}Info
-import com.bitzsoft.model.model.widget.ModelFlex
+import com.bitzsoft.ailinkedlaw.model.ModelFlex
 import com.bitzsoft.repo.delegate.RepoViewImplModel
 import com.bitzsoft.repo.view_model.BaseViewModel
 import java.lang.ref.WeakReference

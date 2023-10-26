@@ -46,7 +46,7 @@ class $repoClassName(
         auditType: String,
         workFlowModel: CommonWorkFlowViewModel,
         request: RequestCommonID,
-        actionImpl: (ArrayList<ResponseAction>) -> Unit
+        actionImpl: (MutableList<ResponseAction>) -> Unit
     ) {
         val api = repo.service
         jobInfo(

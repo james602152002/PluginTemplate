@@ -238,7 +238,7 @@ import $applicationPackageName.view.ui.${path}.Activity${Type.USER.key}${classNa
 import $applicationPackageName.view_model.common.CommonDateTimePickerViewModel
 import com.bitzsoft.base.util.Constants
 import com.bitzsoft.base.adapter.ArchViewHolder
-import com.bitzsoft.model.model.widget.ModelFlex
+import com.bitzsoft.ailinkedlaw.model.ModelFlex
 import com.bitzsoft.model.response.${path}.Response${className}s
 import org.koin.android.ext.android.get
 import org.koin.core.qualifier.named
