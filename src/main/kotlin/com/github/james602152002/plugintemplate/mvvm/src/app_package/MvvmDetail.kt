@@ -275,7 +275,7 @@ private fun createXMLStr(
             smartRefreshImpl="@{model.refreshImplField}"
             snack="@{model.snackContentID}"
             snackCallBack="@{model.snackCallBack}"
-            state="@{model.refreshState}"
+            state="@={model.refreshState}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/common_background_color"
@@ -296,57 +296,45 @@ private fun createXMLStr(
                     android:paddingTop="@{adjModel.semiVMargin}"
                     android:paddingBottom="@{adjModel.semiVMargin}">
 
+                    <include
+                        android:id="@+id/card_basic_info"
+                        layout="@layout/component_title_and_flex"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:adjModel="@{adjModel}"
+                        app:branchPermitSet="@{model.branchPermitSet}"
+                        app:cardId="@{@id/card_basic_info}"
+                        app:flexInfo="@{model.flexBasicInfo}"
+                        app:keyPermission='@{model.keyPermissionBasicInfo}'
+                        app:keyTitle='@{"BasicInformation"}'
+                        app:model="@{model}"
+                        app:resBT="@{@id/card_remark}"
+                        app:titleId="@{@id/title_basic_info}" />
 
-//                    <include
-//                        android:id="@+id/card_basic_info"
-//                        layout="@layout/component_title_and_flex"
-//                        android:layout_width="match_parent"
-//                        android:layout_height="wrap_content"
-//                        app:adjModel="@{adjModel}"
-//                        app:branchPermitSet="@{model.branchPermitSet}"
-//                        app:cardId="@{@id/card_basic_info}"
-//                        app:flexInfo="@{model.flexBasicInfo}"
-//                        app:keyPermission='@{model.keyPermissionBasicInfo}'
-//                        app:keyTitle='@{"BasicInformation"}'
-//                        app:model="@{model}"
-//                        app:resBT="@{@id/card_remark}"
-//                        app:titleId="@{@id/title_basic_info}" />
-//
-//                    <include
-//                        android:id="@+id/card_remark"
-//                        layout="@layout/component_common_remark"
-//                        android:layout_width="match_parent"
-//                        android:layout_height="wrap_content"
-//                        app:branchPermitSet="@{model.branchPermitSet}"
-//                        app:cardCenterLP="@{true}"
-//                        app:content="@{model.item.remark}"
-//                        app:keyPermission='@{"remark"}'
-//                        app:keyTitle='@{"Remark"}'
-//                        app:layout_constraintBottom_toTopOf="@+id/title_files"
-//                        app:layout_constraintLeft_toLeftOf="parent"
-//                        app:layout_constraintRight_toRightOf="parent"
-//                        app:layout_constraintTop_toBottomOf="@id/card_basic_info"
-//                        app:sauryKeyMap="@{model.sauryKeyMap}"
-//                        app:visible="@{model.item != null}" />
+                    <include
+                        android:id="@+id/card_remark"
+                        layout="@layout/component_common_remark"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:branchPermitSet="@{model.branchPermitSet}"
+                        app:cardCenterLP="@{true}"
+                        app:content="@{model.item.remark}"
+                        app:keyPermission='@{"remark"}'
+                        app:keyTitle='@{"Remark"}'
+                        app:layout_constraintBottom_toTopOf="@+id/title_common_approval_records"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/card_basic_info"
+                        app:sauryKeyMap="@{model.sauryKeyMap}"
+                        app:visible="@{model.item != null}" />
 
                     <include
                         layout="@layout/component_common_approval_records"
                         app:adjModel="@{adjModel}"
-                        app:bottomResId="@{@id/bottom_barrier}"
                         app:model="@{workFlowModel}"
                         app:picker="@{picker}"
                         app:sauryKeyMap="@{model.sauryKeyMap}"
-                        app:topResId="@{@id/card_charge_info}" />
-
-                    <View
-                        android:id="@+id/bottom_barrier"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@{adjModel.semiVMargin}"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/card_common_approval_records" />
+                        app:topResId="@{@id/card_remark}" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.core.widget.NestedScrollView>
@@ -455,6 +443,7 @@ class $vmClassName(
         flexBasicInfo.set(mutableListOf<ModelFlex>().apply {
 
         })
+        refAct.get()?.let { DelegateDepart.updateForm(this, it, response) }
         startConstraint()
     }
 
