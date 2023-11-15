@@ -414,7 +414,7 @@ class $vmClassName(
         }
     }
     
-    val flexBasicInfo = BaseLifeData<MutableList<ModelFlex>>()
+    val flexBasicInfo = BaseLifeData<MutableList<ModelFlex<Any>>()
     val branchPermitSet by DelegateDepart.permitOnBoarding { mActivity }
     val keyPermissionBasicInfo = DelegateDepart.keyPermission
 
@@ -440,7 +440,7 @@ class $vmClassName(
     
     private fun updateBasicInfo(response: Model${className}Info?) {
         response ?: return
-        flexBasicInfo.set(mutableListOf<ModelFlex>().apply {
+        flexBasicInfo.set(mutableListOf<ModelFlex<Any>>().apply {
 
         })
         refAct.get()?.let { DelegateDepart.updateForm(this, it, response) }

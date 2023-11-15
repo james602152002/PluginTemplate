@@ -81,7 +81,7 @@ private fun createResponseStr(
     requestClassName: String,
     path: String,
 ) = """
-package ${applicationPackageName.replace("ailinkedlaw", "model")}}.response.${path}
+package ${applicationPackageName.replace("ailinkedlaw", "model")}.response.${path}
 
 
 import com.bitzsoft.model.response.common.ResponseCommonList

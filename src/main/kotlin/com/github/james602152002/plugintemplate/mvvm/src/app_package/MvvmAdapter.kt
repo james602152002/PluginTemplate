@@ -270,8 +270,8 @@ class $adapterClassName(
     private val pickerModel: CommonDateTimePickerViewModel = activity.get()
     private val decimalFormat: DecimalFormat = activity.get()
 
-    override fun funFlexConv(model: Response${className}s): MutableList<ModelFlex> {
-        return mutableListOf<ModelFlex>().apply {
+    override fun funFlexConv(model: Response${className}s): MutableList<ModelFlex<Any>> {
+        return mutableListOf<ModelFlex<Any>>().apply {
 //            this += ModelFlex(
 //                keyTitle = "Pages.Customers.CaseConfirm",//立案客户
 //                content = model.clientName,

@@ -15,7 +15,7 @@ fun createDetailBean(
     createResponseStr(
         packageName, responseClassName, path
     ).save(
-        directorySrc, "response.${path}", responseClassName.asKt()
+        directorySrc, "model.${path}", responseClassName.asKt()
     )
 }
 
@@ -24,7 +24,7 @@ private fun createResponseStr(
     requestClassName: String,
     path: String,
 ) = """
-package $applicationPackageName.response.${path}
+package $applicationPackageName.model.${path}
 
 import com.bitzsoft.model.response.common.ResponseCommon
 import com.google.gson.annotations.SerializedName
